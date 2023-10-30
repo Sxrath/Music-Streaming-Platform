@@ -1,0 +1,87 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@100&family=Cinzel:wght@400;600&family=Dela+Gothic+One&family=Hind+Siliguri&family=Manrope:wght@200&family=Merriweather:wght@300;400&family=Nunito+Sans:ital,opsz,wght@1,6..12,200&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Roboto&family=Space+Mono&family=Ubuntu:wght@300&display=swap" rel="stylesheet">  <title>Melophile</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            padding: 20px;
+            font-family: poppins;
+        }
+
+        h1 {
+            color: rgb(36, 34, 34);
+            font-family: Dela Gothic One;
+            font-size: 60px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #333131;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            }
+
+        li a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        li a:hover {
+            color: #0056b3;
+        }
+
+        .no-audio {
+            font-style: italic;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar" style="display: flex; margin-top: -25px; background-color: rgba(18,18,18,255);height: 70px;  width: 1300px; text-align: center; margin-left: -30px; margin-right: -70px; padding-left: 45px;">
+            
+        <div class="logo" style="padding-top: 25px; padding-left: 20px;"><b style="font-size: 20px; color: white; ">MELOPHILE</b></div>
+        <div class="broad" style="padding-top: 25px;"><a href="{% url 'home' %}" style="text-decoration: none; color: white; margin-left: 960px; margin-right: 20px; ">Home</a></div>
+        <div class="home" style="padding-top: 25px;"><a href="{% url 'showall'%}"  style="margin-right: 20px; text-decoration: none; color: white; "> Songs</a></div>
+
+        <div class="broad" style="padding-top: 25px;"><a href="{% url 'seepodcast' %}" style="text-decoration: none; color: white;  ">Podcast</a></div>
+
+        <div class="user" style="padding-bottom: 20px;">
+           
+    
+    </div>
+    </div> 
+   
+    <ul>
+        <div class="all" style="display: flex; background-color: #9e9292; width: 1300px; height: 240px;">
+            <div class="img"><img src="/media/{{broadcast.cover}}" alt="" style="height: 240px; width: auto; border-radius: px; padding: 0;"></div>
+             <div class="ti" style="padding-bottom: 80px; padding-left: 10px;"> <h1>{{ broadcast.title }}</h1></div>
+        </div><br><br>
+            {% for audio_file in audio_files %}
+                <li>
+                    <a href="{%url 'audio_detail' audio_file.id%}">{{ audio_file.audio_name }}</a>
+                </li>
+                {%empty%}
+                <img src="{% static 'images\moon.jpg' %}" style="padding-left: 400px;  ">
+            {% endfor %}
+        
+         
+        
+    </ul>
+</body>
+</html>

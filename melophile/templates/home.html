@@ -1,0 +1,169 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{%static 'css/home.css'%}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@100&family=Cinzel:wght@400;600&family=Manrope:wght@200&family=Merriweather:wght@300;400&family=Nunito+Sans:ital,opsz,wght@1,6..12,200&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Roboto&family=Space+Mono&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <title>Melophile</title>
+</head>
+<body style="background-color: black;">
+    <div class="full">
+        <div class="left">
+            <div class="head">
+                <h3>Melophile ™</h3>
+                <p style="font-weight: 500;"><a href="{%url 'showall'%}"  style="text-decoration: none; color: white;">Search</a><p>
+                {%if user.is_authenticated %}
+                <p style="font-weight: 500;"><a href="{%url 'showplaylist'%}"  style="text-decoration: none; color: white;">Your Playlist</a></p>
+                {%else%}
+                <p style="font-weight: 500; color: rgb(47, 46, 46);">  Your Playlist</p>
+                {%endif%}
+                <p  style="font-weight: 500;"><a href="{%url 'seepodcast'%}"  style="text-decoration: none; color: white;">Podcasts</a></p>
+            </div>
+            <div class="library">
+                <h3>Explore</h3>
+                <div class="congest">
+                    <div class="upsong">
+                        <h3>Upload and save your own song</h3>
+                        <p>Its easy,We will help you</p>
+                        {%if user.is_authenticated%}
+                        <button style=" border-radius: 50px; border: 0; height:35px ; width: 80px; background-color: white; "><a href="{%url 'savesong'%}" style="text-decoration: none; color: rgb(0, 0, 0); font-family: poppins;" ><b>Upload</b></a></button>
+                         {%else%}
+                         <h3 style="color: #777;">Login to Start Now</h3>
+                         {%endif%}
+                    </div>
+                    <br>
+                    <div class="upBrod">
+                        <h3>Upload Podcast</h3>
+                        <p>Its easy,We will help you</p>
+                        {%if user.is_authenticated%}
+                        <button style=" border-radius: 50px; border: 0; height:35px ; width: 80px; background-color: white; "><a href="{%url 'title'%}" style="text-decoration: none; color: rgb(0, 0, 0); font-family: poppins;" ><b>Upload</b></a></button>
+                         {%else%}
+                         <h3 style="color: #777;">Login to Start Now</h3>
+                         {%endif%}
+                    </div>
+                </div>
+                <div class="ft"><br>
+                    <div class="sea">
+                        <ul style="padding-left: 1px;">
+                            <li>Legal</li>
+                            <li>Privacy</li>
+                            <li>Cookies</li>
+                        </ul>
+
+                    </div>
+                    <div class="btn" style="padding-bottom: -13px; ">
+                        <button style=" border-radius: 50px;  border: 0; height:35px ; width: 80px; background-color: rgb(160, 148, 148);   "><b style="font-family: poppins; ">🌍English</b></a></button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+       
+            
+        <div class="right" style="padding-left: 10px;">
+            <div class="nav" style="background-color: rgba(18,18,18,255); margin-right:-35px;">
+                <!-- <div class="back">
+                    <h3><a href="{%url 'landing'%}" style="text-decoration: none; color: white;">Back</a></h3>
+                </div> -->
+                <div class="sig" style="padding-left: 700px; ">
+                    <ul>
+                        {% if user.is_authenticated %}
+                        
+                        <li style="padding-left: 140px;"><button style="border-radius: 50px; border: 0; height: 35px; width: 80px; background-color: white;">
+                            <a href="{% url 'logout' %}" style="text-decoration: none; color: rgb(0, 0, 0); font-family: poppins;"><b>Logout</b></a>
+                        </button></li>
+                        {% else %}
+                        
+                        <li><button style="border-radius: 50px; border: 0; height: 35px; width: 80px; background-color: white;">
+                            <a href="{% url 'register' %}" style="text-decoration: none; color: rgb(0, 0, 0); font-family: poppins;"><b>Signup</b></a>
+                        </button></li>
+                        <li><button style="border-radius: 50px; border: 0; height: 35px; width: 80px; background-color: white;">
+                            <a href="{% url 'login' %}" style="text-decoration: none; color: rgb(0, 0, 0); font-family: poppins;"><b>Login</b></a>
+                        </button></li>
+                        {% endif %}
+                    </ul>
+                    
+
+                </div>
+                
+            </div><br>
+
+
+            <div class="gard" style="display: flex; justify-content: space-between; padding-left: 20px; ">
+                {% for i in object_list|slice:":4" %}
+                <div class="card">
+                    <img src="/media/{{i.image}}" alt="Image Description" style="width: 100%; height: 200px;">
+                    <div class="card-content">
+                        <div class="card-title"><a href="{%url 'detail' i.id%}" style="text-decoration: none; color: white;">{{i.title}}</a></div>
+                        <div class="form" style="display: flex;">
+                            <div class="artist-name" style="font-size: 14px; font-family: poppins; color: #777; padding-top: 4px;">
+                                {{ i.artist }}
+                            </div>
+                            <form action="{% url 'add_to_playlist' song_id=i.id %}" method="post" style="padding-bottom: 25px;">
+                                {% csrf_token %}
+                                <button type="submit" style="border: 0; background-color: black; padding-bottom: 20px;">
+                                    {% if user.is_authenticated %}
+                                        🖤 
+                                    {% else %}
+                                        
+                                    {% endif %}
+                                </button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+    
+             {% endfor %}
+
+            </div>
+            <div class="more" style=" padding-left: 900px; margin-bottom: 0px;" ><p style="margin-bottom: 70px;"><a href="{% url 'showall'%}" style="color: white; text-decoration: none; ">Show All</a></p></div>
+
+            <div class="footer" style="display: flex; border-radius: 5px; justify-content: space-around; background-color: rgba(18,18,18,255); margin-right:-35px;">
+                <div class="about" style="margin-bottom: 5px;">
+                    <p style="color: white; padding-left: 40px; " >About</p>
+                    <ul>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">About us</a></li>
+                        <!-- <li><a href="#">Careers</a></li> -->
+                        
+                        
+                    </ul>
+                </div>
+                <div class="about">
+                    <p style="color: white; padding-left: 40px;">Community</p>
+                    <ul>
+                        <li><a href="#">Vendors</a></li>
+            
+                        <li><a href="#">Developers</a></li>
+                        <!-- <li><a href="#"> Artists</a></li> -->
+                        
+                    </ul>
+                </div>
+                    <div class="about">
+                        <p style="color: white; padding-left: 40px;">Help</p>
+                        <ul>
+                            <li><a href="#">Payments</a></li>
+                            <li><a href="#">Subscription</a></li>
+                            
+                        </ul>
+                    </div>
+                        <div class="about">
+                            <p style="color: white; padding-left: 40px;">Consumer Ploicy</p>
+                            <ul>
+                                <li><a href="#">Privacy</a></li>
+                                <li><a href="#">Terms of Use</a></li>
+                                <!-- <li><a href="#">Security</a></li> -->
+                                
+                            </ul>
+                        </div>
+    
+    </div>
+
+</body>
+</html>

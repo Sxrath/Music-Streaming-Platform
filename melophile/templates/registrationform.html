@@ -1,0 +1,27 @@
+{% extends 'main.html'%}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cap">
+        <h3 style="color: white; font-size: 30px; font-family: poppins; font-weight: 500;">Oh c'mon, Let's Make some Noice</h3>
+    </div>
+    <form action="" method="post">
+        {%csrf_token %}
+        {{form.as_p}}
+       <div class="mm" style="display: flex;">
+        <div class="sub">
+            <button type="submit" style="margin-bottom: 20px; font-family: poppins; font-weight: 600; margin-left: px; ">Submit</button>
+
+        </div>
+        <div><a href="{%url 'login' %}" style="margin-left: 400px; text-decoration: none; color: white; font-family: poppins;">Login</a></div>
+       </div>
+    </form>
+</body>
+</html>
+{%endblock%}

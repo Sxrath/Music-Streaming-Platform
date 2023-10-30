@@ -1,0 +1,68 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{%static 'css/playlist.css'%}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@100&family=Cinzel:wght@400;600&family=Manrope:wght@200&family=Merriweather:wght@300;400&family=Nunito+Sans:ital,opsz,wght@1,6..12,200&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Roboto&family=Space+Mono&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <title>Melophile</title>
+</head>
+<body style="background-color: black;">
+    <div class="full">
+        <div class="left">
+            <div class="head">
+                <h3>Melophile ™</h3>
+                <p style="font-weight: 500;"><a href="{%url 'home'%}"  style="text-decoration: none; color: white;">Home</a><p>
+                <p style="font-weight: 500;"><a href="{%url 'showall'%}"  style="text-decoration: none; color: white;">Songs</a></p>
+                <p  style="font-weight: 500;"><a href="#"  style="text-decoration: none; color: white;">Your Uploads</a></p>
+            </div>
+            <div class="library">
+                <h3>Your Playlist</h3>
+                <div class="congest">
+                    <div>
+                        {% for playlist in playlists %}
+                         
+                            
+                            
+                              {% for song in playlist.songs.all %}
+                                <div class="detail_play" style="display: flex; gap:10px;">
+                                    <div class="ima" ><img src='\media\{{song.image}} ' style="height: 30px; width: 30px;"></div>
+                                    <div><a href="{% url 'detail'  song.id%}" style="color:white; text-decoration: none;">{{ song.title }}</a></div>
+                                </div>
+                              {% endfor %}
+                            
+                        
+                        {% endfor %}
+                            </div>
+                    
+                    </div>
+                <div class="ft"><br>
+                    <div class="sea">
+                        <ul style="padding-left: 1px;">
+                            <li>Legal</li>
+                            <li>Privacy</li>
+                            <li>Cookies</li>
+                        </ul>
+
+                    </div>
+                    <div class="btn" style="padding-bottom: -13px;">
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+       
+            
+        <div class="right" style="padding-left: 10px;">
+            
+            <img src="{%static 'images/moon.jpg'%}" style="margin-left: 300px; margin-top: 100px; height: 400px; width: auto;">
+      
+            
+            </div>
+       
+</body>
+</html>

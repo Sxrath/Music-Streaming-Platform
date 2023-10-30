@@ -1,0 +1,39 @@
+body{
+    color: white;
+    background-color: black;
+}
+.navbar{
+    display: flex;
+    gap:30px;
+    padding-left: 30px;
+    font-family: poppins;
+    font-size: 17px;
+    background-color: rgba(18,18,18,255);
+    padding-top: 20px;
+    border-radius: 5px;
+}
+.search{
+    display: flex;
+    
+}
+.search input{
+    width: 400px;
+    height: 25px;
+    border-radius: 5px;
+    border: 0;
+}
+.search{
+    margin-left: 320px;
+}
+::placeholder{
+    font-size: 15px;
+    padding-left: 10px;
+}
+.log a{
+    color: white;
+}
+
+input[type="text"]{
+    font-size: 15px;
+    font-family: poppins;
+}

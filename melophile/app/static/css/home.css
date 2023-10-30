@@ -1,0 +1,150 @@
+body{
+    font-family: poppins;
+}
+.full{
+    display:flex;
+    font-family: poppins;
+    
+}
+
+.nav{
+    display: flex;
+   gap: 680px;
+   background-color: rgba(18,18,18,255);
+   border-radius: 5px;
+   margin-top: 5px;
+   
+}
+.nav ul{
+    display: flex;
+}
+.nav ul li{
+    color: white;
+    list-style-type: none;
+    
+}
+.sig ul{
+    gap: 30px;
+}
+.back{
+    padding-top: 10px;
+    color: white;
+}
+.left{
+    padding-top: 5px;
+    padding-left: 10px;
+   
+    height: 620px;
+    
+    border-radius: 7px;
+}
+.right{
+    padding-left: 20px;
+}
+.head{
+    
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    width: 300px;
+}
+.library{
+    color: white;
+    background-color: rgba(18,18,18,255);
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 7px;
+    width:300px;
+    
+}
+.congest {
+    height: 200px;
+    overflow-y: auto; 
+    padding: 10px; 
+    background-color: rgb(64, 60, 60);
+    border-radius: 5px;
+    
+}
+.upsong{
+    height: 150px;
+}
+.upBroad{
+    height: 150px;
+}
+.head {
+    font-family: poppins;
+}
+.head p{
+ padding-left: 7px;
+ font-weight: 600;
+}
+.head{
+    color: white;
+    background-color: rgba(18,18,18,255);
+}
+ 
+.sea ul{
+    display: flex;
+    
+    justify-content: space-around;
+}
+.sea ul li{
+    list-style-type: none;
+    font-size: 13px;
+    color: rgb(165, 149, 149);
+}
+.btn{
+    padding-left:200px ;
+    padding-top: 20px;
+    
+}
+.back h3{
+    margin-left: 20px;
+}
+.sig ul{
+    margin-right: 10px;
+}
+
+.card {
+    width: 200px; /* Fixed width for the card */
+    height: 300px; /* Fixed height for the card */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden; /* Hide content that overflows the card */
+}
+
+/* Image styles */
+.card img {
+    width: 100%; /* Make the image width 100% of the card */
+    height: auto; /* Maintain image aspect ratio */
+}
+
+/* Title and artist name styles */
+.card-content {
+    padding: 10px;
+    color: white;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.artist-name {
+    font-size: 14px;
+    color: #777;
+}
+
+
+.about a{
+    text-decoration: none;
+    color: gray;
+}
+.about li{
+    list-style-type: none;
+}

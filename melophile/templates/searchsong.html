@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@100&family=Cinzel:wght@400;600&family=Manrope:wght@200&family=Merriweather:wght@300;400&family=Nunito+Sans:ital,opsz,wght@1,6..12,200&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Roboto&family=Space+Mono&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/search.css'%}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<div class="navbar">
+            
+    <div class="logo"><b style="font-size: 20px;">MELOPHILE</b></div>
+    <div class="home"><a href="{% url 'showall'%}" > Songs</a></div>
+   
+    <div class="broad"><a href="{% url 'seepodcast' %}" style="text-decoration: none; color: white;">Podcast</a></div>
+    <div class="uploads">Your Uploads</div>
+    <div class="user" style="padding-bottom: 20px;">
+        {% if request.user.is_authenticated %}
+    <div class="log"><a href="#" style="text-decoration: none; color: white;">Logout</a></div>
+    {%else%}
+    <div class="log"><a href="#" style="text-decoration: none; color: white;">Login</a></div>
+    {%endif%}
+    </div> 
+
+</div>
+<body style="background-color: black;">
+    <!-- <div class="res"><p>Search Results</p><hr></div> -->
+    <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; gap: 10px; padding-left: 10px; padding-top: 30px; ">
+        {% for i in object_list %}
+        
+        <div class="card" style=" width: 200px; 
+        height: 300px; 
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;">
+            <img src="/media/{{i.image}}" alt="Image Description" style="width: 100%; height: 200px;">
+            <div class="card-content" style=" padding: 10px;
+            color: white;">
+                <div class="card-title" style=" font-size: 18px;
+                font-weight: 500;
+                margin-bottom: 10px;
+                color: white; font-family: poppins;"><a href="{% url 'detail' i.id %}" style="text-decoration: none; color: white;">{{i.title}}</a></div>
+                <div class="artist-name" style="font-size: 14px; font-family: poppins;
+                color: #777;">{{i.artist}}</div>
+            </div>
+        </div>
+        {%empty%}
+        <div class="imgg" style="margin-left: 200px;">
+            <img src="{%static 'images/song.found-removebg-preview.png'%}">
+        </div>
+
+     {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>podcast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@100&family=Cinzel:wght@400;600&family=Manrope:wght@200&family=Merriweather:wght@300;400&family=Nunito+Sans:ital,opsz,wght@1,6..12,200&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Roboto&family=Space+Mono&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    
+</head>
+
+<style>
+    input[type=text]{
+        width: 90%;
+        height: 30px;
+        font-size: 20px;
+        background-color: rgb(67, 67, 66);
+    }
+    body{
+        background-color: black;
+    }
+    .container{
+        
+        font-family: poppins;
+        padding-top: 5px;
+        max-width: 550px;
+        background-color: rgba(18,18,18,255);
+        margin: auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding-left: 20px;
+        padding-right: 20px;
+        height:550px;
+        border-radius: 10px;
+       }
+       label{
+        padding-top: 10px ;
+        display: block;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        padding-bottom: 5px;
+       }
+       input[type="file"]{
+        border: none;
+        font-family: poppins;
+        color: rgb(123, 115, 115);
+       
+       }
+       input{
+        font-size: 20px;
+        
+       }
+       
+</style>
+<body>
+    
+    <br><br><br>
+    <div class="container">
+        <h3 style="font-family: poppins; color: white;">Uploap Your Audio Here...</h3>
+        <form action="{% url 'addpod' %}" method="post">
+            {%csrf_token%}
+             <!-- Dropdown or selection field for choosing the broadcast -->
+{{form.as_p}}
+            <div class="flex" style="display: flex; margin-top: 60px;">
+                <div class="bt">        <button type="submit" style="font-family: poppins; font-weight: 550; margin-left: px; margin-bottom: 20px;">Upload</button></div>
+                
+                <div class="ac" style="margin-left: 400px;"><a href="{%url 'home' %}" style="font-family: poppins;  text-decoration: none; color: white; ">Back</a></div>
+                
+            </div>
+        </form>
+    </div>
+</body>
+</html>

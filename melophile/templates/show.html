@@ -1,0 +1,90 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@100&family=Cinzel:wght@400;600&family=Manrope:wght@200&family=Merriweather:wght@300;400&family=Nunito+Sans:ital,opsz,wght@1,6..12,200&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Roboto&family=Space+Mono&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/show.css'%}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show all</title>
+</head>
+<body>
+    <div class="above" style=" border-radius: 5px; display: flex; justify-content: space-between; background-color: rgba(18,18,18,255);" >
+        <div class="home" style="margin-top: 10px; margin-bottom: 10px; padding-left: 30px; font-family: poppins; "><a href="{%url 'home' %}" style="text-decoration: none; color: white;">Home</a></div>
+        <div class="logout" style="margin-top: 10px; margin-bottom: 10px; padding-right: 30px; ">
+            {% if request.user.is_authenticated %}
+            <div class="log"><a href="{%url 'logout'%}" style="text-decoration: none; color: white; font-family: poppins;">Logout</a></div>
+            {%else%}
+            <div class="log"><a href="{% url 'login' %}" style="text-decoration: none; color: white; font-family: poppins;">Login</a></div>
+            {%endif%}
+        </div>
+    </div>
+        <div class="navbar" style="margin-top: 10px;">
+            
+            <div class="logo"><b style="font-size: 20px;">MELOPHILE</b></div>
+            <form method="get" action="/search/">
+                <div class="search" style="gap: 10px; margin-left: 400px;">
+                    <div class="in"><input type="text" placeholder="Search Query" name="q" id="search" ></div>
+                    <div class="btn"><Button  type='submit'style= "height: 28px; width: 60px; border-radius: 5px; border: 0; font-family: poppins; font-weight: 500; background-color: white; cursor: pointer;">Search</Button></div>
+                </div>
+            </form>
+           
+            <div class="broad"  style="padding-bottom: 20px;" ><a href="{% url 'seepodcast' %}" style="text-decoration: none; color: white;">Podcast</a></div>
+           {% if user.is_authenticated %}
+           <div class="uploads"><a href="{% url 'showplaylist' %}" style="text-decoration: none; color: white;">Your Playlist</a></div></div>
+           {%else%}
+           <div class="uploads" style="text-decoration: none; color: rgb(43, 39, 39);">Your Playlist</div></div>
+            
+           {%endif%}
+
+        </div>
+        <!-- <div class="undr" style="padding-top: 10px;">
+            <button style=" border-radius: 30px; border: 0; height:30px ; width: 35px; background-color: white; "><a href="#" style="text-decoration: none; color: rgb(0, 0, 0); font-family: poppins; " ><b><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path d="M 12 2.0996094 L 1 12 L 4 12 L 4 21 L 11 21 L 11 15 L 13 15 L 13 21 L 20 21 L 20 12 L 23 12 L 12 2.0996094 z M 12 4.7910156 L 18 10.191406 L 18 11 L 18 19 L 15 19 L 15 13 L 9 13 L 9 19 L 6 19 L 6 10.191406 L 12 4.7910156 z"/></svg></b></a></button>
+
+
+        </div> -->
+    <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; gap: 10px; padding-left: 10px; padding-top: 30px;  ">
+        {% for i in object_list %}
+        
+        <div class="card" style=" width: 200px; 
+        height: 300px; 
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;">
+            <img src="/media/{{i.image}}" alt="Image Description" style="width: 100%; height: 200px;">
+            <div class="card-content" style=" padding: 10px;
+            color: white;">
+                <div class="card-title" style=" font-size: 18px;
+                font-weight: 500;
+                margin-bottom: 10px;
+                color: white; font-family: poppins;"><a href="{%url 'detail' i.id%}" style="text-decoration: none; color: white;">{{i.title}}</a></div>
+               
+               <div class="form" style="display: flex;">
+                <div class="artist-name" style="font-size: 14px; font-family: poppins; color: #777;">
+                    {{ i.artist }}
+                </div>
+                <form action="{% url 'add_to_playlist' song_id=i.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" style="border: 0; background-color: black;">
+                        {% if user.is_authenticated %}
+                            🖤 
+                        {% else %}
+                            
+                        {% endif %}
+                    </button>
+                </form>
+            </div>
+            
+
+            </div>
+        </div>
+        
+
+     {% endfor %}
+    </div>
+    
+</body>
+</html>

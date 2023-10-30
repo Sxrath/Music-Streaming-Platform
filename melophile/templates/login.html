@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+{%load static % }
+{%block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@100&family=Cinzel:wght@400;600&family=Manrope:wght@200&family=Merriweather:wght@300;400&family=Nunito+Sans:ital,opsz,wght@1,6..12,200&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,200&family=Roboto&family=Space+Mono&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    
+</head>
+
+
+<body> 
+    <h2 style="font-family: poppins; color: white; font-size: 30px; margin-left: 220px; ">Login</h2>
+    <form action="" method="post">
+        {%csrf_token%}
+        {{form.as_p}}
+<div class="flex" style="display: flex;">
+    <div class="bt">        <button type="submit" style="font-family: poppins; font-weight: 550; margin-left: px; margin-bottom: 20px;">Start Tunes</button></div>
+    <div class="ac" style="margin-left: 300px;"><a href="{%url 'register' %}" style="font-family: poppins;  text-decoration: none; color: white; ">Create Account</a></div>
+</div>
+    </form>
+</body>
+</html>
+{%endblock%}
